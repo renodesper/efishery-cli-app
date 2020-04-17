@@ -21,11 +21,13 @@ type (
 	// CouchDBRepository ...
 	CouchDBRepository interface {
 		GetTask(docID string) (*models.Task, error)
-		GetTasks() ([]*models.Task, error)
+		GetTasks(withDeleted bool) ([]*models.Task, error)
+		GetOutdatedTasks() ([]*models.Task, error)
 		AddTask(task *models.Task) error
 		UpdateTask(task *models.Task) error
 		DeleteTask(task *models.Task) error
 		DoneTask(task *models.Task) error
+		SyncTasks() error
 	}
 )
 
