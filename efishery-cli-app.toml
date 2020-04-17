@@ -1,3 +1,4 @@
 [app]
 env = "development"
+dataSourceName = "http://admin:iniadmin@13.250.43.79:5984"
 dbname = "todos_boysga"
