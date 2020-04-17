@@ -12,7 +12,7 @@ var listCmd = &cobra.Command{
 	Short: "A brief description of your command",
 	Run: func(cmd *cobra.Command, args []string) {
 		taskService := task.NewTaskService()
-		tasks, err := taskService.GetTasks()
+		tasks, outdatedTasks, err := taskService.GetTasks()
 		if err != nil {
 			fmt.Println(err)
 			return
@@ -28,6 +28,8 @@ var listCmd = &cobra.Command{
 
 			fmt.Println(fmt.Sprintf("%s\t%s\t%s\t%s", t.ID, status, t.Tags, t.Content))
 		}
+
+		fmt.Println(fmt.Sprintf("\nOutdated tasks: %d", len(outdatedTasks)))
 	},
 }
 
