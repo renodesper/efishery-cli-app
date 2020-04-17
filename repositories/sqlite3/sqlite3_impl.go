@@ -24,7 +24,7 @@ func (s *sqlite3) GetTask(docID string) (*models.Task, error) {
 		panic(err)
 	}
 
-	t, err := time.Parse("2006-01-02T15:04:05.000000000-07:00", createdAt)
+	t, err := time.Parse("2006-01-02T15:04:05.999999999-07:00", createdAt)
 	if err != nil {
 		return nil, err
 	}
@@ -33,9 +33,15 @@ func (s *sqlite3) GetTask(docID string) (*models.Task, error) {
 	return &task, nil
 }
 
-func (s *sqlite3) GetTasks() ([]*models.Task, error) {
+func (s *sqlite3) GetTasks(withDeleted bool) ([]*models.Task, error) {
 	dbname := viper.GetString("app.dbname")
-	rows, err := s.db.Query(fmt.Sprintf("SELECT _id, _rev, content, tags, created_at, is_deleted, is_done FROM %s WHERE is_deleted != 1", dbname))
+
+	q := fmt.Sprintf("SELECT _id, _rev, content, tags, created_at, is_deleted, is_done FROM %s", dbname)
+	if !withDeleted {
+		q = fmt.Sprintf("%s WHERE is_deleted != 1", q)
+	}
+
+	rows, err := s.db.Query(q)
 	if err != nil {
 		return nil, err
 	}
@@ -52,7 +58,7 @@ func (s *sqlite3) GetTasks() ([]*models.Task, error) {
 			panic(err)
 		}
 
-		t, err := time.Parse("2006-01-02T15:04:05.000000000-07:00", createdAt)
+		t, err := time.Parse("2006-01-02T15:04:05.999999999-07:00", createdAt)
 		if err != nil {
 			panic(err)
 		}
@@ -67,6 +73,10 @@ func (s *sqlite3) GetTasks() ([]*models.Task, error) {
 	}
 
 	return tasks, nil
+}
+
+func (s *sqlite3) GetOutdatedTasks() ([]*models.Task, error) {
+	return nil, nil
 }
 
 func (s *sqlite3) AddTask(task *models.Task) error {
@@ -134,5 +144,10 @@ func (s *sqlite3) DoneTask(task *models.Task) error {
 	}
 
 	tx.Commit()
+	return nil
+}
+
+func (s *sqlite3) SyncTasks() error {
+	fmt.Println("Failed to synchronize data")
 	return nil
 }
