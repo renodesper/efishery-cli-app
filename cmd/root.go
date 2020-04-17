@@ -42,8 +42,8 @@ func initConfig() {
 
 	viper.AutomaticEnv()
 
-	if err := viper.ReadInConfig(); err == nil {
-		env := viper.GetString("app.env")
-		fmt.Println(fmt.Sprintf("Using config file: %s (%s)\n", viper.ConfigFileUsed(), env))
+	err := viper.ReadInConfig()
+	if err != nil {
+		panic(err)
 	}
 }
