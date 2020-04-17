@@ -12,7 +12,7 @@ import (
 
 var addCmd = &cobra.Command{
 	Use:   "add",
-	Short: "A brief description of your command",
+	Short: "Add a new task",
 	Run: func(cmd *cobra.Command, args []string) {
 		fContent, err := cmd.Flags().GetString("content")
 		if err != nil {

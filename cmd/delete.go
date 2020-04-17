@@ -10,7 +10,7 @@ import (
 // deleteCmd represents the delete command
 var deleteCmd = &cobra.Command{
 	Use:   "delete",
-	Short: "A brief description of your command",
+	Short: "Delete a task",
 	Run: func(cmd *cobra.Command, args []string) {
 		fID, err := cmd.Flags().GetString("id")
 		if err != nil {

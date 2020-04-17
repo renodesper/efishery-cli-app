@@ -12,7 +12,7 @@ import (
 // editCmd represents the edit command
 var editCmd = &cobra.Command{
 	Use:   "edit",
-	Short: "A brief description of your command",
+	Short: "Edit specific task",
 	Run: func(cmd *cobra.Command, args []string) {
 		fID, err := cmd.Flags().GetString("id")
 		if err != nil {

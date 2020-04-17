@@ -10,7 +10,7 @@ import (
 // syncCmd represents the sync command
 var syncCmd = &cobra.Command{
 	Use:   "sync",
-	Short: "A brief description of your command",
+	Short: "Sync local data into remote database",
 	Run: func(cmd *cobra.Command, args []string) {
 		taskService := task.NewTaskService()
 		err := taskService.SyncTasks()

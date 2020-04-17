@@ -31,7 +31,7 @@ func Execute() {
 func init() {
 	cobra.OnInitialize(initConfig)
 
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "efishery-cli-app.toml", "config file (default is efishery-cli-app.toml")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "efishery-cli-app.toml", "")
 }
 
 // initConfig reads in config file and ENV variables if set.

@@ -9,7 +9,7 @@ import (
 
 var listCmd = &cobra.Command{
 	Use:   "list",
-	Short: "A brief description of your command",
+	Short: "Show all tasks (offline-first, call remote database when connection is available)",
 	Run: func(cmd *cobra.Command, args []string) {
 		taskService := task.NewTaskService()
 		tasks, outdatedTasks, err := taskService.GetTasks()

@@ -10,7 +10,7 @@ import (
 // doneCmd represents the done command
 var doneCmd = &cobra.Command{
 	Use:   "done",
-	Short: "A brief description of your command",
+	Short: "Set specific task as done",
 	Run: func(cmd *cobra.Command, args []string) {
 		fID, err := cmd.Flags().GetString("id")
 		if err != nil {
