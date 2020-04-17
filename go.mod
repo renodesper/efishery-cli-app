@@ -9,6 +9,7 @@ require (
 	github.com/go-kivik/kivik v2.0.0+incompatible // indirect
 	github.com/go-kivik/kivik/v3 v3.0.2
 	github.com/google/uuid v1.1.1
+	github.com/mattn/go-sqlite3 v2.0.3+incompatible
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/spf13/cobra v1.0.0
 	github.com/spf13/viper v1.6.3
