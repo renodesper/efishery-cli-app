@@ -7,13 +7,18 @@ import (
 	"gitlab.com/renodesper/efishery-cli-app/models"
 )
 
-func (t *task) GetTasks() ([]*models.Task, error) {
-	tasks, err := t.repository.GetTasks()
+func (t *task) GetTasks() ([]*models.Task, []*models.Task, error) {
+	tasks, err := t.repository.GetTasks(false)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return tasks, nil
+	outdatedTasks, err := t.repository.GetOutdatedTasks()
+	if err != nil {
+		return nil, nil, err
+	}
+
+	return tasks, outdatedTasks, nil
 }
 
 func (t *task) AddTask(task *models.Task) error {
@@ -76,6 +81,15 @@ func (t *task) DoneTask(docID string) error {
 	}
 
 	err = t.repository.DoneTask(task)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (t *task) SyncTasks() error {
+	err := t.repository.SyncTasks()
 	if err != nil {
 		return err
 	}
