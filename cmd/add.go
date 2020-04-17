@@ -49,6 +49,8 @@ var addCmd = &cobra.Command{
 		if err != nil {
 			fmt.Println(err)
 		}
+
+		fmt.Println("Done\n")
 	},
 }
 
