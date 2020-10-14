@@ -1,0 +1,4 @@
+[app]
+env = "development"
+dataSourceName = ""
+dbname = "todos_boysga"

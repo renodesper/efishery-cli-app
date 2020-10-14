@@ -31,7 +31,7 @@ Available Commands:
   sync        Sync local data into remote database
 
 Flags:
-      --config string    (default "efishery-cli-app.toml")
+      --config string    (default "./config/env/development.toml")
   -h, --help            help for efishery-cli-app
 
 Use "efishery-cli-app [command] --help" for more information about a command.
